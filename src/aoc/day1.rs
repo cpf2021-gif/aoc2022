@@ -1,7 +1,7 @@
 use crate::aoc::read;
 
-pub fn solve_part1() {
-    let lines = read::read_lines("input/day1/input.txt");
+pub fn solve_part1(filename: &str) -> i32 {
+    let lines = read::read_lines(filename);
     let mut sum = 0;
     let mut max = 0;
 
@@ -15,11 +15,11 @@ pub fn solve_part1() {
         }
         sum += line.parse::<i32>().unwrap();
     }
-    println!("Day 1, Part 1: {}", max)
+    max
 }
 
-pub fn solve_part2()  {
-    let lines = read::read_lines("input/day1/input.txt");
+pub fn solve_part2(filename: &str) -> i32 {
+    let lines = read::read_lines(filename);
     let mut sum = 0;
     let mut sums = vec![];
     for line in lines {
@@ -30,12 +30,31 @@ pub fn solve_part2()  {
         }
         sum += line.parse::<i32>().unwrap();
     }
-    sums.sort_by(
-        |a, b| b.partial_cmp(a).unwrap()
-    );
+
+    if sum != 0 {
+        sums.push(sum);
+    }
+
+    sums.sort_by(|a, b| b.partial_cmp(a).unwrap());
+
     let mut result = 0;
     for i in 0..3 {
         result += sums[i];
     }
-    println!("Day 1, Part 2: {}", result)
+    result
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        assert_eq!(solve_part1("input/day1/test.txt"), 24000);
+    }
+
+    #[test]
+    fn test_part2() {
+        assert_eq!(solve_part2("input/day1/test.txt"), 45000);
+    }
 }
