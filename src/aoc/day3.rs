@@ -1,7 +1,7 @@
 #![allow(unused)]
 use crate::aoc::read;
 
-pub fn get_char_score(ch: char) -> i32 {
+fn get_char_score(ch: char) -> i32 {
     match ch {
         'a'..='z' => ch as i32 - 'a' as i32 + 1,
         'A'..='Z' => ch as i32 - 'A' as i32 + 1 + 26,
