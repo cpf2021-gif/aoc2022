@@ -1,3 +1,4 @@
+#![allow(unused)]
 use crate::aoc::read;
 
 pub fn solve_part1(filename: &str) -> i32 {
@@ -6,7 +7,7 @@ pub fn solve_part1(filename: &str) -> i32 {
     let mut max = 0;
 
     for line in lines {
-        if line == "" {
+        if line.is_empty() {
             if sum > max {
                 max = sum;
             }
@@ -23,7 +24,7 @@ pub fn solve_part2(filename: &str) -> i32 {
     let mut sum = 0;
     let mut sums = vec![];
     for line in lines {
-        if line == "" {
+        if line.is_empty() {
             sums.push(sum);
             sum = 0;
             continue;
@@ -38,8 +39,8 @@ pub fn solve_part2(filename: &str) -> i32 {
     sums.sort_by(|a, b| b.partial_cmp(a).unwrap());
 
     let mut result = 0;
-    for i in 0..3 {
-        result += sums[i];
+    for sum in sums.iter().take(3) {
+        result += sum;
     }
     result
 }
