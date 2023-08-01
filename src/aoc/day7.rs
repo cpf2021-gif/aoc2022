@@ -74,19 +74,19 @@ impl Diretory {
     }
 
     fn find(&self, target: i32) -> i32 {
-    let mut result = std::i32::MAX;
-       if self.weight >= target {
-           result = self.weight;
-       }
-       if !self.children.is_empty() {
+        let mut result = std::i32::MAX;
+        if self.weight >= target {
+            result = self.weight;
+        }
+        if !self.children.is_empty() {
             for child in self.children.values() {
                 let child_result = child.borrow().find(target);
                 if child_result < result {
                     result = child_result;
                 }
             }
-       }
-       result
+        }
+        result
     }
 }
 
@@ -107,14 +107,13 @@ fn execute1(lines: Vec<String>) -> (Rc<RefCell<Diretory>>, i32) {
             }
         } else if line.starts_with("dir") {
             let name = line.split(' ').collect::<Vec<&str>>()[1];
-            let child = Rc::new(RefCell::new(Diretory::new(
-                name.to_string(),
-                0
-            )));
+            let child = Rc::new(RefCell::new(Diretory::new(name.to_string(), 0)));
             cur_node.borrow_mut().add_child(child.clone());
             child.borrow_mut().set_parent(cur_node.clone());
         } else {
-            let weight = line.split(' ').collect::<Vec<&str>>()[0].parse::<i32>().unwrap();
+            let weight = line.split(' ').collect::<Vec<&str>>()[0]
+                .parse::<i32>()
+                .unwrap();
             cur_node.borrow_mut().weight += weight;
         }
     }
@@ -140,14 +139,13 @@ fn execute2(lines: Vec<String>) -> (Rc<RefCell<Diretory>>, i32) {
             }
         } else if line.starts_with("dir") {
             let name = line.split(' ').collect::<Vec<&str>>()[1];
-            let child = Rc::new(RefCell::new(Diretory::new(
-                name.to_string(),
-                0
-            )));
+            let child = Rc::new(RefCell::new(Diretory::new(name.to_string(), 0)));
             cur_node.borrow_mut().add_child(child.clone());
             child.borrow_mut().set_parent(cur_node.clone());
         } else {
-            let weight = line.split(' ').collect::<Vec<&str>>()[0].parse::<i32>().unwrap();
+            let weight = line.split(' ').collect::<Vec<&str>>()[0]
+                .parse::<i32>()
+                .unwrap();
             cur_node.borrow_mut().weight += weight;
         }
     }
