@@ -30,32 +30,32 @@ fn init_data(data: Vec<String>) -> Vec<Vec<char>> {
 }
 
 fn execute1(data: &mut [Vec<char>], message: Vec<String>) -> String {
-   for line in message {
+    for line in message {
         // move 1 from 1 to 2, get 3 number in the line
         let iter: Vec<&str> = line.split_whitespace().collect();
-        let mut num = iter[1].parse::<usize>().unwrap(); 
+        let mut num = iter[1].parse::<usize>().unwrap();
         let from = iter[3].parse::<usize>().unwrap() - 1;
         let to = iter[5].parse::<usize>().unwrap() - 1;
         if num > data[from].len() {
-           num = data[from].len(); 
+            num = data[from].len();
         }
         for _ in 0..num {
             let ch = data[from].pop().unwrap();
             data[to].push(ch);
-        } 
-   } 
-   data.iter().map(|v| v.last().unwrap()).collect::<String>()
+        }
+    }
+    data.iter().map(|v| v.last().unwrap()).collect::<String>()
 }
 
 fn execute2(data: &mut [Vec<char>], message: Vec<String>) -> String {
-   for line in message {
+    for line in message {
         // move 1 from 1 to 2, get 3 number in the line
         let iter: Vec<&str> = line.split_whitespace().collect();
-        let mut num = iter[1].parse::<usize>().unwrap(); 
+        let mut num = iter[1].parse::<usize>().unwrap();
         let from = iter[3].parse::<usize>().unwrap() - 1;
         let to = iter[5].parse::<usize>().unwrap() - 1;
         if num > data[from].len() {
-           num = data[from].len(); 
+            num = data[from].len();
         }
         let mut temp = Vec::new();
         for _ in 0..num {
@@ -63,8 +63,8 @@ fn execute2(data: &mut [Vec<char>], message: Vec<String>) -> String {
         }
         temp.reverse();
         data[to].extend(temp);
-   } 
-   data.iter().map(|v| v.last().unwrap()).collect::<String>()
+    }
+    data.iter().map(|v| v.last().unwrap()).collect::<String>()
 }
 
 pub fn solve_part1(filename: &str) -> String {
