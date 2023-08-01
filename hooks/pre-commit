@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Run 'cargo fmt' to format code before each commit
+cargo fmt --all -- --check
+result=$?
+
+if [ $result -ne 0 ]; then
+    echo "Code formatting check failed. Please run 'cargo fmt' before committing."
+    exit 1
+fi
