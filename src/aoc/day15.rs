@@ -95,7 +95,7 @@ pub fn solve_part2(filename: &str) -> i64 {
             println!("{}", x * 4000000 + row);
         }
     }
-    0
+    1
 }
 
 #[cfg(test)]
